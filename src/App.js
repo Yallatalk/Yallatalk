@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase';
-import { googleSignIn, saveDataToFirestore } from './firebaseHelpers'; // ✅ استيراد الحفظ و Google
+import { googleSignIn, saveDataToFirestore } from './firebaseHelpers';
 
 function App() {
   const navigate = useNavigate();
@@ -25,8 +25,7 @@ function App() {
     }
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
 
       if (!user.emailVerified) {
         alert('🚫 يرجى تفعيل بريدك الإلكتروني أولاً قبل تسجيل الدخول.');
@@ -46,7 +45,6 @@ function App() {
     try {
       const user = await googleSignIn();
 
-      // حفظ بيانات المستخدم في Firestore
       await saveDataToFirestore('users', {
         uid: user.uid,
         name: user.displayName || '',
@@ -100,11 +98,16 @@ function App() {
         </button>
 
         <p className="text-center mt-4 text-sm text-gray-400">
-          ما عندك حساب؟ <Link to="/register" className="text-yellow-400 underline">سجل الآن</Link>
+          ما عندك حساب؟{' '}
+          <Link to="/register" className="text-yellow-400 underline">
+            سجل الآن
+          </Link>
         </p>
 
         <p className="text-center mt-2 text-sm text-yellow-400">
-          <Link to="/reset-password" className="underline">نسيت كلمة المرور؟</Link>
+          <Link to="/reset-password" className="underline">
+            نسيت كلمة المرور؟
+          </Link>
         </p>
       </div>
     </div>
