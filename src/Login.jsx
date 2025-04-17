@@ -26,7 +26,6 @@ function Login() {
 
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-
       if (!user.emailVerified) {
         alert('🚫 يرجى تفعيل بريدك الإلكتروني أولاً قبل تسجيل الدخول.');
         return;
@@ -55,8 +54,13 @@ function Login() {
 
       localStorage.setItem('username', user.displayName || user.email.split('@')[0]);
       localStorage.setItem('loggedIn', 'true');
-      alert('✅ تم تسجيل الدخول باستخدام Google');
-      navigate('/home');
+
+      // ✅ ضمان التحقق من البريد
+      auth.onAuthStateChanged((loggedInUser) => {
+        if (loggedInUser && loggedInUser.emailVerified) {
+          navigate('/home');
+        }
+      });
     } catch (error) {
       alert(`🚫 فشل تسجيل الدخول بـ Google: ${error.message}`);
     }

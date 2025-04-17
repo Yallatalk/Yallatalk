@@ -1,7 +1,7 @@
 // firebaseHelpers.js
-import { storage, db, auth } from './firebase';
+import { storage, db, auth, googleProvider } from './firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 
 // 🔁 رفع صورة أو فيديو إلى Firebase Storage
@@ -13,8 +13,7 @@ export const uploadImage = async (file, path = 'images/') => {
 
 // 🔁 تسجيل الدخول باستخدام Google
 export const googleSignIn = async () => {
-  const provider = new GoogleAuthProvider(); // ✅ تعريف الموفر داخل الدالة
-  const result = await signInWithPopup(auth, provider);
+  const result = await signInWithPopup(auth, googleProvider);
   return result.user;
 };
 

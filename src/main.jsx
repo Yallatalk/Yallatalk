@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './Login';
+import App from './App'; // ✅ تصحيح الاستيراد
 import { BrowserRouter } from 'react-router-dom';
-import './index.css'; // ✅ استيراد التنسيقات (Tailwind CSS)
+import './index.css';
 
 const root = document.getElementById('root');
 
