@@ -68,7 +68,7 @@ function App() {
         <h1 className="text-3xl font-bold text-center text-yellow-400 mb-4">YallaTalk</h1>
 
         <input
-          type="text"
+          type="email"
           placeholder="البريد الإلكتروني"
           className="w-full mb-3 p-3 rounded bg-zinc-800 text-white"
           value={email}
@@ -84,14 +84,14 @@ function App() {
         />
 
         <button
-          className="w-full bg-yellow-500 text-black p-3 rounded font-semibold hover:bg-yellow-400"
+          className="w-full bg-yellow-500 text-black p-3 rounded font-semibold hover:bg-yellow-400 transition"
           onClick={handleLogin}
         >
           تسجيل الدخول
         </button>
 
         <button
-          className="w-full mt-3 bg-white text-black p-3 rounded font-semibold hover:bg-gray-200"
+          className="w-full mt-3 bg-white text-black p-3 rounded font-semibold hover:bg-gray-200 transition"
           onClick={handleGoogleLogin}
         >
           تسجيل الدخول بـ Google
