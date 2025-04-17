@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom'; // ✅ استيراد useLocation
 import Navbar from './Navbar';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
@@ -20,10 +20,14 @@ import LanguageSettings from './LanguageSettings.jsx';
 import About from './About.jsx';
 
 function App() {
+  const location = useLocation();
+  const hideNavbarRoutes = ['/', '/register', '/reset-password'];
+  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
+
   return (
     <>
-      <Navbar />
-      <div className="pt-16"> {/* ✅ عشان ما يغطي Navbar الصفحة */}
+      {!shouldHideNavbar && <Navbar />}
+      <div className={shouldHideNavbar ? '' : 'pt-16'}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
