@@ -5,7 +5,7 @@ import './i18n';
 import App from './App';
 import Register from './Register';
 import Home from './Home';
-import Chat from './Chat';
+import Chat from './Chat.jsx';
 import Settings from './Settings';
 import Profile from './Profile';
 import Friends from './Friends';
