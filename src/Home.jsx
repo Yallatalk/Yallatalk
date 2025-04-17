@@ -20,14 +20,17 @@ export default function Home() {
     const isLoggedIn = localStorage.getItem('loggedIn');
     if (isLoggedIn !== 'true') return navigate('/');
 
-    const currentUser = auth.currentUser;
-    if (!currentUser || !currentUser.emailVerified) {
-      alert(t('verifyEmail'));
-      return navigate('/');
-    }
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user || !user.emailVerified) {
+        alert(t('verifyEmail'));
+        navigate('/');
+      } else {
+        const name = localStorage.getItem('username');
+        if (name) setUsername(name);
+      }
+    });
 
-    const name = localStorage.getItem('username');
-    if (name) setUsername(name);
+    return () => unsubscribe();
   }, [navigate, t]);
 
   const handleLogout = () => {
@@ -43,6 +46,13 @@ export default function Home() {
       localStorage.setItem('followedUsers', JSON.stringify(updated));
       showToast(`${t('followed')} ${name}`);
     }
+  };
+
+  const handleUnfollow = (name) => {
+    const updated = followed.filter((n) => n !== name);
+    setFollowed(updated);
+    localStorage.setItem('followedUsers', JSON.stringify(updated));
+    showToast(`🚫 ${t('unfollowed')} ${name}`);
   };
 
   const showToast = (message) => {
@@ -111,13 +121,21 @@ export default function Home() {
                   >
                     {t('chat')}
                   </Link>
-                  <button
-                    onClick={() => handleFollow(user.name)}
-                    disabled={followed.includes(user.name)}
-                    className="bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-500 disabled:opacity-50"
-                  >
-                    {followed.includes(user.name) ? t('followedBtn') : t('follow')}
-                  </button>
+                  {followed.includes(user.name) ? (
+                    <button
+                      onClick={() => handleUnfollow(user.name)}
+                      className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-500 transition"
+                    >
+                      {t('unfollow')}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleFollow(user.name)}
+                      className="bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-500 transition"
+                    >
+                      {t('follow')}
+                    </button>
+                  )}
                 </div>
               </motion.div>
             ))}

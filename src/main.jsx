@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App'; // ✅ تصحيح الاستيراد
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
+import './i18n'; // ✅ الترجمة
+import App from './App'; // ✅ صفحة التنقل الرئيسية
 
-const root = document.getElementById('root');
+const rootElement = document.getElementById('root');
 
-if (root) {
-  ReactDOM.createRoot(root).render(
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
     <React.StrictMode>
       <BrowserRouter>
         <App />
@@ -15,5 +17,5 @@ if (root) {
     </React.StrictMode>
   );
 } else {
-  console.error('❌ لم يتم العثور على العنصر الذي يحتوي على id="root"');
+  console.error('❌ Root element with id="root" not found!');
 }

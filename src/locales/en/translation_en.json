@@ -24,7 +24,8 @@
   "searchUser": "Search for a user or language...",
   "follow": "Follow",
   "followedBtn": "Following",
-  "followed": "✅ You followed",
+  "followed": "Unfollow",
+  "unfollowed": "Unfollowed",
   "speaks": "Speaks",
   "lang_ar": "Arabic",
   "lang_jp": "Japanese",
@@ -88,5 +89,8 @@
   "cancelReply": "Cancel",
   "editMessage": "✏️ Message edited",
   "deleteMessage": "🗑️ Message deleted",
-  "sentMessage": "✅ Message sent"
+  "sentMessage": "✅ Message sent",
+  "editProfile": "✏️ Edit",
+  "languageNative": "Native Language",
+  "languageLearning": "Learning"
 }

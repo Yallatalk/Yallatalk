@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import Navbar from './Navbar';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
 import ResetPassword from './ResetPassword.jsx';
@@ -16,30 +17,35 @@ import Community from './Community.jsx';
 import Favorites from './Favorites.jsx';
 import Posts from './Posts.jsx';
 import LanguageSettings from './LanguageSettings.jsx';
-import About from './About.jsx'; // صفحة من نحن
+import About from './About.jsx';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/chat" element={<Chat />} />
-      <Route path="/settings" element={<Settings />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/friends" element={<Friends />} />
-      <Route path="/explore" element={<Explore />} />
-      <Route path="/rooms" element={<VoiceRooms />} />
-      <Route path="/live" element={<LiveStream />} />
-      <Route path="/notifications" element={<Notifications />} />
-      <Route path="/followers" element={<Followers />} />
-      <Route path="/community" element={<Community />} />
-      <Route path="/favorites" element={<Favorites />} />
-      <Route path="/posts" element={<Posts />} />
-      <Route path="/language-settings" element={<LanguageSettings />} />
-      <Route path="/about" element={<About />} />
-    </Routes>
+    <>
+      <Navbar />
+      <div className="pt-16"> {/* ✅ عشان ما يغطي Navbar الصفحة */}
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/rooms" element={<VoiceRooms />} />
+          <Route path="/live" element={<LiveStream />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/followers" element={<Followers />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/language-settings" element={<LanguageSettings />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
