@@ -2,7 +2,9 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import { getAnalytics } from 'firebase/analytics';
 
+// ✅ إعدادات Firebase من مشروعك الحالي
 const firebaseConfig = {
   apiKey: "AIzaSyDYJ9sZCQggVSrv-gvF3nW5ui04mzW4Xc",
   authDomain: "yallatalk-cfbc2.firebaseapp.com",
@@ -13,9 +15,14 @@ const firebaseConfig = {
   measurementId: "G-D6Y8DK55JE"
 };
 
+// ✅ تهيئة التطبيق
 const app = initializeApp(firebaseConfig);
 
+// ✅ تهيئة الخدمات
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 export const googleProvider = new GoogleAuthProvider();
+
+// ✅ (اختياري) التحليلات
+getAnalytics(app);
